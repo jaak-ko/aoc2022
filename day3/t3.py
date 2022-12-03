@@ -4,13 +4,13 @@ alpha = ['a','b','c','d','e','f','g','h','i','j','k','l','m',
 
 def part_one():
 
-    file = open("t3.txt", 'r')
-
     commons = []
-    for line in file:
-        line_1, line_2 = line[:len(line)//2], line[len(line)//2:]
-        commons.append(set(set(line_1)&set(line_2)))
     score = 0
+    
+    for line in open("t3.txt", 'r'):
+        line_1, line_2 = line[:len(line)//2], line[len(line)//2:]
+        commons.append(set(set(line_1)&set(line_2)).pop())
+    
     for a in commons:
         score += alpha.index(a)+1 if a in alpha else \
             [c.upper() for c in alpha].index(a) + 27
@@ -26,14 +26,11 @@ def part_two():
 
     commons = []
     i = 0
-    while i < len(lines):
-        f = lines[i]
-        s = lines[i+1]
-        t = lines[i+2]
 
-        prev_len = len(commons)
-        [commons.append(a) for a in f if a in s and a in t]
-        commons = commons[:prev_len+1]
+    while i < len(lines):
+
+        f, s, t= lines[i], lines[i+1], lines[i+2]
+        commons.append(set(set(f)&set(s)&set(t)).pop())
 
         i += 3
 
@@ -42,6 +39,7 @@ def part_two():
             [c.upper() for c in alpha].index(a) + 27
 
     return score
+
 def main():
 
     print(part_one())
