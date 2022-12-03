@@ -8,9 +8,8 @@ wins = [['C', 'X'], ['A', 'Y'], ['B', 'Z']]
 
 def part_one():
 
-    file = open("t2.txt", 'r')
     myscore = 0
-    for i in file:
+    for i in open("t2.txt", 'r'):
 
         situ = [i.strip() for i in i.split(" ")]
 
@@ -27,9 +26,9 @@ def part_one():
 
 def part_two():
 
-    file = open("t2.txt", 'r')
+
     myscore = 0
-    for i in file:
+    for i in open("t2.txt", 'r'):
 
         i = [i.strip() for i in i.split(" ")]
 
@@ -52,8 +51,6 @@ def part_two():
 
 
 def main():
-
-    file = open("t2.txt", 'r')
 
     print(part_one())
     print(part_two())
