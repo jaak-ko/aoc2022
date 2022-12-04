@@ -1,7 +1,6 @@
 
 import time
 
-
 start = time.time()
 with open("t4.txt", 'r') as file:
         data = [[e[0].split("-"), e[1].strip().split("-")] 
