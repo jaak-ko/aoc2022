@@ -1,5 +1,8 @@
 
+import time
 
+
+start = time.time()
 with open("t4.txt", 'r') as file:
         data = [[e[0].split("-"), e[1].strip().split("-")] 
                 for e in [i.split(",") for i in file.readlines()]]
@@ -27,7 +30,9 @@ def part_two():
 
 def main():
 
+    end = time.time()
     print(f"PART 1: {part_one()} \nPART 2: {part_two()}")
+    print(f"{(end-start)*1000:.3f} milliseconds")
 
 if __name__ == "__main__":
     main()
