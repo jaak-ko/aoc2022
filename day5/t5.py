@@ -1,6 +1,7 @@
 
+import copy
+
 stacks1 = {1:[], 2:[], 3:[], 4:[], 5:[], 6:[], 7:[], 8:[], 9:[]}
-stacks2 = {1:[], 2:[], 3:[], 4:[], 5:[], 6:[], 7:[], 8:[], 9:[]}
 not_chars = ["[", "]", " ", "\n"]
 
 
@@ -12,15 +13,8 @@ for row in data1[:8]:
     [stacks1[int(data1[8][i])].append(char) \
         for i, char in enumerate(row) if char not in not_chars]
 
-
-#create data for part 2
-data2 = [[*i] for i in open("t5.txt", 'r').readlines()[:9]] + \
-    [i.strip() .split(" ")for i in open("t5.txt", 'r').readlines()[9:]]
-
-for row in data2[:8]:
-    [stacks2[int(data2[8][i])].append(char) \
-        for i, char in enumerate(row) if char not in not_chars]
-
+data2 = copy.deepcopy(data1)
+stacks2 = copy.deepcopy(stacks1)
 
 def part_one():
 
