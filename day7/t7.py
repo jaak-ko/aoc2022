@@ -23,7 +23,7 @@ class Directory:
     def get_subs(self):
             return self.__subs
 
-    def get_size(self):
+    def get_files_size(self):
         return self.__size
 
     def add_sub(self, sub):
@@ -33,7 +33,7 @@ class Directory:
         self.__size += amount
 
     def calc_size(self):
-        size = self.get_size()
+        size = self.get_files_size()
 
         if not self.get_subs():
             return size
@@ -72,9 +72,6 @@ def part_one():
 
         elif row[0].isnumeric():
             current.update_size(int(row[0]))
-
-    for a in dirs:
-        print(a, a.calc_size())
 
     return sum([a.calc_size() for a in dirs if a.calc_size() <= 100000])
     
