@@ -43,11 +43,10 @@ class Directory:
         return size
         
     def __str__(self):
-        return f"{self.__name}"
+        return f"{self.__name}: {self.calc_size()}"
 
 
-
-def part_one():
+def structure():
 
     dirs = []
     
@@ -73,13 +72,26 @@ def part_one():
         elif row[0].isnumeric():
             current.update_size(int(row[0]))
 
-    return sum([a.calc_size() for a in dirs if a.calc_size() <= 100000])
+    return dirs
     
+def part_two(struc):
+
+    s_size = next(d.calc_size() for d in struc if d.get_name() == "/")
+    p2_ds = list(filter(
+            lambda x : (70000000 - s_size) + x.calc_size() >= 30000000, struc))
+
+    return ((sorted(p2_ds, key=lambda x : x.calc_size()))[0])
+
     
 
 def main():
 
-    print(part_one())
+    struc = structure()
+
+    print("part 1: ", end="")
+    print(sum([a.calc_size() for a in struc if a.calc_size() <= 100000]))
+
+    print(f"part 2: {part_two(struc)}")
 
 
 if __name__ == "__main__":
