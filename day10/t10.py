@@ -13,7 +13,6 @@ def part_one():
     cycle = 0
 
     for idx, row in enumerate(data):
-
         if row[0] == "addx":
             for _ in range(2):
                 cycle += 1
@@ -22,7 +21,6 @@ def part_one():
                     cycle_checked = True
             x += int(row[-1])
         else:
-
             if check(cycle) and not cycle_checked:
                 solution += x * cycle
             cycle += 1
@@ -30,11 +28,13 @@ def part_one():
 
     return solution
 
+
 def part_two():
 
     x = 1
     cycle = 0
     pixels = ""
+
     for idx, row in enumerate(data):
 
         if row[0] == "addx":
@@ -51,9 +51,9 @@ def part_two():
 
 def main():
 
-    print(f"part one: {part_one()}")
-    print(f"part two:")
+    print(f"part one: {part_one()}\npart two:")
     part_two()
+
 
 if __name__ == "__main__":
     main()
