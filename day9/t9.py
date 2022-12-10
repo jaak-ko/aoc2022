@@ -4,30 +4,24 @@
 with open("t9.txt", 'r') as f:
     data = [[r.strip().split(" ")[0], int(r.strip().split(" ")[1])] for r in f]
 
-moves = {'R': 1, 'L':-1, 
-         'U':1, 'D':-1}
+moves = {'R': 1, 'L': -1, 
+         'U': 1, 'D': -1}
 
 
 def part_one():
 
-    def diagonal_needed(h, t):
-        return abs(h[0] - t[0]) == 2 and abs(h[-1] - t[-1]) == 1 or \
-               abs(h[0] - t[0]) == 1 and abs(h[-1] - t[-1]) == 2
-
+    # answer = 5735
     def move_tail(h, t):
-        diagonal_moves = [[t[0]+1, t[1]+1], [t[0]-1, t[1]-1],
-                          [t[0]+1, t[1]-1], [t[0]-1, t[1]+1]]
-        axial_moves = [[t[0], t[1]+1],[t[0], t[1]-1], 
-                       [t[0]+1, t[1]], [t[0]-1, t[1]]]
+        tail_moves = [[t[0]+1, t[1]+1], [t[0]-1, t[1]-1],
+                 [t[0]+1, t[1]-1], [t[0]-1, t[1]+1],
+                 [t[0], t[1]+1],[t[0], t[1]-1], 
+                 [t[0]+1, t[1]], [t[0]-1, t[1]]]
 
-        if diagonal_needed(h, t):
-            for t_n in diagonal_moves:
-                if abs(h[0] - t_n[0]) <= 1 and abs(h[-1] - t_n[-1]) <= 1:
-                    return t_n
-            
-        for t_n in axial_moves:
-            if abs(h[0] - t_n[0]) <= 1 and abs(h[-1] - t_n[-1]) <= 1:
+        for t_n in tail_moves:
+            if abs(h[0] - t_n[0]) == 1 and abs(h[-1] - t_n[-1]) == 0 or \
+               abs(h[0] - t_n[0]) == 0 and abs(h[-1] - t_n[-1]) == 1:
                 return t_n
+            
 
     t_visits = set()
     h = [0, 0]
